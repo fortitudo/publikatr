@@ -1,0 +1,11 @@
+{
+  "name": "publikatr",
+  "version": "0.0.1",
+  "description": "web based publication system for scientific articles",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gözde Can, Bernd Krippendorf, Max Höltgen, Saskia Geuking, Jan Koppe",
+  "license": "GPL-3.0"
+}
