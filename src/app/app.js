@@ -8,7 +8,7 @@
   * Load additional modules
 */
 
-//var compression = require('compression');
+var compression = require('compression');
 var express = require('express');
 
 
@@ -17,13 +17,10 @@ var express = require('express');
 */
 
 var webserver = express();
-//webserver.use(compression());
+webserver.use(compression());
 webserver.use(express.static('static'));
-webserver.get('/', function (req, res) {
-	res.send('wut!');
-});
 
 
 var server = webserver.listen(80, function() {
-	console.log('wut!');
+	console.log('Webserver running!');
 });
