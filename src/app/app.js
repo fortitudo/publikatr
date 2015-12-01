@@ -28,6 +28,12 @@ var webserver = express();
 webserver.use(compression());
 webserver.use(express.static('static'));
 
+//enable jade template engine. everything will be handled via express.
+webserver.set('view engine', 'jade');
+
+webserver.get('/', function (req,res) {
+    res.render('index', {title: 'Hi!', message: 'Hello World!'});
+});
 
 var server = webserver.listen(8080, function() {
 	debug('Webserver running!');
