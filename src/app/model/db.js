@@ -2,6 +2,12 @@
  * This file handles the Mongoose connection to the MongoDB Server.
  */
 
+/**
+ *  Load and Setup debug logger 
+*/
+
+var debug = require('debug')('mongoose');
+
 var mongoose = require('mongoose');
 
 //Include our custom Mongoose schemas
@@ -14,15 +20,15 @@ mongoose.connect(dburi);
 
 // Inform about connection events
 mongoose.connection.on('connected', function() {
-    console.log('Connection to ' + dburi + ' succesful.');
+    debug('Connection to ' + dburi + ' succesful.');
 });
 
 mongoose.connection.on('error', function(err) {
-    console.log('Connection to ' + dburi + ' failed: ' + err);
+    debug('Connection to ' + dburi + ' failed: ' + err);
 });
 
 mongoose.connection.on('disconnected', function() {
-    console.log('Connection to ' + dburi + ' has been closed.');
+    debug('Connection to ' + dburi + ' has been closed.');
 });
 
 // Gracefully close database connection when Node Server is terminated

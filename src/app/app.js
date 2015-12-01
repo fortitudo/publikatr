@@ -5,6 +5,12 @@
 */
 
 /**
+ *  Load and Setup debug logger 
+*/
+
+var debug = require('debug')('main');
+
+/**
   * Load additional modules
 */
 
@@ -24,5 +30,5 @@ webserver.use(express.static('static'));
 
 
 var server = webserver.listen(8080, function() {
-	console.log('Webserver running!');
+	debug('Webserver running!');
 });
