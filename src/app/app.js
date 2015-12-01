@@ -1,7 +1,7 @@
-/**
-  * NodeJS application for publikatr.
-  *
-  * @author Saskia Geuking, Gözde Can, Max Höltgen, Bernd Krippendorf, Jan Koppe
+/*
+ * NodeJS application for publikatr.
+ *
+ * @author Saskia Geuking, Gözde Can, Max Höltgen, Bernd Krippendorf, Jan Koppe
 */
 
 /**
@@ -10,6 +10,8 @@
 
 var compression = require('compression');
 var express = require('express');
+var db = require('./model/db');
+
 
 
 /**
@@ -21,6 +23,6 @@ webserver.use(compression());
 webserver.use(express.static('static'));
 
 
-var server = webserver.listen(80, function() {
+var server = webserver.listen(8080, function() {
 	console.log('Webserver running!');
 });
