@@ -31,10 +31,24 @@ webserver.use(express.static('static'));
 // enable jade template engine. everything will be handled via express.
 webserver.set('view engine', 'jade');
 
+webserver.get('/testadd', function(req,res) {
+
+    var newPublication = new db.models.publications({metadata:{title:'Test!'}});
+
+    newPublication.save(function (err) {
+        if (err) debug('Failed to save newPublication: ' + err);
+        else debug('Saving newPublication seems to have succeeded. \\o/');
+    });
+    
+    res.render('index', {searchResults: []});
+    debug('Served /testadd to ' + req.ip);
+});
+
+
 webserver.get('/', function (req,res) {
     
     // Some fake Search Results for testing the Jade Template    
-    var searchResults = [
+    /*var searchResults = [
         {
             metadata: {
                 title: 'If thy heart fails thee, climb not at all.',
@@ -51,11 +65,16 @@ webserver.get('/', function (req,res) {
             }
         }
 
-    ];
+    ];*/
+    var results = [];
+    //find all Publications, Project only the metadata Part.
+    db.models.publications.find({}, 'metadata', function(err, pubs) {
+        debug('Found the following Publications: ' + pubs);
+    });
 
 
     // Render the Frontpage via Jade.
-    res.render('index', {searchResults: searchResults});
+    res.render('index', {searchResults:results});
     debug('Served / to ' + req.ip);  
 });
 
