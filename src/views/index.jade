@@ -1,0 +1,4 @@
+extends ./base.jade
+block pagecontent
+    each details in searchResults
+        +smallArticle(details)
