@@ -1,17 +1,16 @@
 /*
- * This file handles the Mongoose connection to the MongoDB Server.
- */
-
-/**
- *  Load and Setup debug logger 
+ * This Module provides manages basic mongoose connections 
 */
 
 var debug = require('debug')('mongoose');
 
+// export our mongoose instance
 var mongoose = require('mongoose');
+exports.mongoose = mongoose;
 
-//Include our custom Mongoose schemas
-var schemas = require('./schema');
+// include models, pass on our mongoose instance, export models again
+var models = require('./models')(mongoose);
+exports.models = models;
 
 // Initiate the database connection
 var dburi = 'mongodb://localhost/publikatr';
