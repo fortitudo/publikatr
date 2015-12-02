@@ -28,22 +28,35 @@ var webserver = express();
 webserver.use(compression());
 webserver.use(express.static('static'));
 
-//enable jade template engine. everything will be handled via express.
+// enable jade template engine. everything will be handled via express.
 webserver.set('view engine', 'jade');
 
 webserver.get('/', function (req,res) {
+    
+    // Some fake Search Results for testing the Jade Template    
     var searchResults = [
-        {title: 'If thy heart fails thee, climb not at all.',
-        author: 'Queen Elizabeth',
-        description: 'Some really amazing text to read.',
-        publishdate: '2015-12-02'},
-        {title: 'Bohemian Rhapsody',
-        author: 'Freddie Mercury',
-        publishdate: '1975-10-31'}
+        {
+            metadata: {
+                title: 'If thy heart fails thee, climb not at all.',
+                author: 'Queen Elizabeth',
+                description: 'Some really amazing text to read.',
+                publishDate: '2015-12-02'
+            }
+        },
+        {
+            metadata: {
+                title: 'Bohemian Rhapsody',
+                author: 'Freddie Mercury',
+                publishDate: '1975-10-31'
+            }
+        }
 
     ];
+
+
+    // Render the Frontpage via Jade.
     res.render('index', {searchResults});
-    debug('Served / to ' + req.ip);
+    debug('Served / to ' + req.ip);  
 });
 
 var server = webserver.listen(8080, function() {
