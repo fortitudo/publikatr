@@ -55,7 +55,7 @@ webserver.get('/', function (req,res) {
 
 
     // Render the Frontpage via Jade.
-    res.render('index', {searchResults});
+    res.render('index', {searchResults: searchResults});
     debug('Served / to ' + req.ip);  
 });
 
