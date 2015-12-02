@@ -47,35 +47,21 @@ webserver.get('/testadd', function(req,res) {
 
 webserver.get('/', function (req,res) {
     
-    // Some fake Search Results for testing the Jade Template    
-    /*var searchResults = [
-        {
-            metadata: {
-                title: 'If thy heart fails thee, climb not at all.',
-                author: 'Queen Elizabeth',
-                description: 'Some really amazing text to read.',
-                publishDate: '2015-12-02'
-            }
-        },
-        {
-            metadata: {
-                title: 'Bohemian Rhapsody',
-                author: 'Freddie Mercury',
-                publishDate: '1975-10-31'
-            }
-        }
-
-    ];*/
-    var results = [];
-    //find all Publications, Project only the metadata Part.
-    db.models.publications.find({}, 'metadata', function(err, pubs) {
-        debug('Found the following Publications: ' + pubs);
+        // find all Publications, read only the metadata Part.
+   var search = new Promise(function(fulfill, reject) {
+        db.models.publications.find({}, 'metadata', function(err, pubs) {
+            if (err) reject(err);
+            else fulfill(pubs);
+        });
     });
 
-
-    // Render the Frontpage via Jade.
-    res.render('index', {searchResults:results});
-    debug('Served / to ' + req.ip);  
+    search.then(function(results) {
+        // Render the Frontpage via Jade.
+        res.render('index', {searchResults:results});
+        debug('Served / to ' + req.ip);  
+    });
+    
+    
 });
 
 var server = webserver.listen(8080, function() {
