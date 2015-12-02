@@ -32,8 +32,18 @@ webserver.use(express.static('static'));
 webserver.set('view engine', 'jade');
 
 webserver.get('/', function (req,res) {
+    var searchResults = [
+        {title: 'If thy heart fails thee, climb not at all.',
+        author: 'Queen Elizabeth',
+        description: 'Some really amazing text to read.',
+        publishdate: '2015-12-02'},
+        {title: 'Bohemian Rhapsody',
+        author: 'Freddie Mercury',
+        publishdate: '1975-10-31'}
+
+    ];
+    res.render('index', {searchResults});
     debug('Served / to ' + req.ip);
-    res.render('index', {title: 'Hi!', message: 'Hello World!'});
 });
 
 var server = webserver.listen(8080, function() {

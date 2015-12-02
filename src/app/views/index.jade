@@ -1,8 +1,4 @@
-doctype html
-html(lang='en')
-    include ./includes/head.jade    
-    body
-        include ./includes/navbar.jade
-        .container
-            
-        include ./includes/foot.jade
+extends ./base.jade
+block pagecontent
+    each details in searchResults
+        +smallArticle(details)

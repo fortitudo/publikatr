@@ -1,0 +1,26 @@
+mixin bigArticle(details)
+    .article.panel.panel-default
+        .panel-body
+            h4= details.title
+            if details.description
+                p= details.description
+            else
+                p No description available.
+        .panel-footer
+            | Written by 
+            =details.author
+            |  on 
+            =details.publishdate
+mixin smallArticle(details)
+    .article.panel.panel-default
+        .panel-body
+            strong
+                span.title=details.title 
+            if details.description
+                span.description  - 
+                    = details.description
+            small.pull-right
+                | Written by 
+                =details.author
+                |  on 
+                =details.publishdate
