@@ -32,6 +32,7 @@ webserver.use(express.static('static'));
 webserver.set('view engine', 'jade');
 
 webserver.get('/', function (req,res) {
+    debug('Served / to ' + req.ip);
     res.render('index', {title: 'Hi!', message: 'Hello World!'});
 });
 
